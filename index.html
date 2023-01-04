@@ -65,7 +65,7 @@ function load(){
   db.add(hour, data, "b36e04dc-c473-44bf-ad87-0e49fc5060b5", "form")
 }
 function res(){
-  var r = new URLSearch(location.search).get("r");
+  var r = new URLSearchParams(location.search).get("r");
   if(r == ""){
     db.get("b36e04dc-c473-44bf-ad87-0e49fc5060b5", "form")
     document.getElementById("cont").innerHTML = db.data;
