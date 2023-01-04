@@ -1,0 +1,35 @@
+<html>
+<body>
+<div id="cont">
+<input id="n" placeholder="Write here your name...">
+<input id="l" placeholder="... the coding language you use...">
+<input id="d" placeholder="... and your most recent discovery">
+</div>
+<button onclick="load()">Send</button>
+</body>
+<script>
+var hour;
+window.onload = function(){
+  load()
+  hour = new Date().getHours();
+  res()
+}
+function load(){
+  var data = document.getElementById("n").value + " codes in " + document.getElementById("l").value + " and the most recent discovery is " + document.getElementById("d").value;
+  db.add(hour, data, "b36e04dc-c473-44bf-ad87-0e49fc5060b5", "form")
+}
+function res(){
+  var r = new URLSearch(location.search).r;
+  if(r == ""){
+    db.get("b36e04dc-c473-44bf-ad87-0e49fc5060b5", "form")
+    document.getElementById("cont").innerHTML = db.data;
+  }
+  else if(r != undefined){
+    db.get("b36e04dc-c473-44bf-ad87-0e49fc5060b5", "form")
+    var m = JSON.parse(db.data)[r];
+    document.getElementById("cont").innerHTML = m;
+  }
+}
+</script>
+<script src="https://raw.githubusercontent.com/code-programer/db.js/main/main.js"></script>
+</html>
